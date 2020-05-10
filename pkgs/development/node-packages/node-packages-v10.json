@@ -103,6 +103,7 @@
 , "json-server"
 , "jsonlint"
 , "karma"
+,"katex"
 , "lcov-result-merger"
 , "leetcode-cli"
 , "lerna"
