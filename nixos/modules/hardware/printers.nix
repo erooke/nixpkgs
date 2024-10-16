@@ -13,6 +13,8 @@ let
       D = p.description;
     } // lib.optionalAttrs (p.ppdOptions != {}) {
       o = lib.mapAttrsToList (name: value: "${name}=${value}") p.ppdOptions;
+    } // lib.optionalAttrs (p.username != null) {
+      U = p.username;
     });
   in ''
     ${pkgs.cups}/bin/lpadmin ${args} -E
@@ -105,6 +107,13 @@ in {
               description = ''
                 Sets PPD options for the printer.
                 {command}`lpoptions [-p printername] -l` shows supported PPD options for the given printer.
+              '';
+            };
+            username = lib.mkOption {
+              type = lib.types.nullOr lib.types.str;
+              default = null;
+              description = ''
+                Optional username to use for authentication
               '';
             };
           };
